@@ -12,14 +12,31 @@
     </header>
     <main>
         <section id="expenses">
-            <h2>Expenses</h2>
-            <ul id="expense-list"></ul>
-            <form id="expense-form">
-                <input type="text" id="expense-input" placeholder="Enter expense">
-                <button type="submit">Add Expense</button>
-            </form>
+            <h2>Expenses<span id="expenses-text">(Budget tracker)</span></h2>
+            <ul id="expense-list" class="transaction-list"></ul>
+            <form action="/transaction" name="forms" method="post" id="expense-form" class="transaction-form">
+                <div class="form-group">
+                    <label for="Item-name">Item name</label>
+                    <input type="text" id="Item-name" name="Item-name" placeholder="Enter the item name">
+                </div>
+                <div class="form-group">
+                    <label for="Item-price">Item price</label>
+                    <input type="text" id="Item-price" placeholder="Enter the item price">
+                </div>
+                <div class="form-buttons">
+                    <input type="submit" value="Add transaction" id="submit-btn">
+                </form>
+                <form action="/delete" method="get">
+                    <input type="submit" id="delete-btn"/>
+                </form>
+                <form action="/modify" method="get">
+                    <input type="submit" id="modify-btn" value="modify"/>
+                </form>
+                </div>
+            
         </section>
     </main>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="/js/script.js"></script>
 </body>
 </html>

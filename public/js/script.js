@@ -1,20 +1,24 @@
-
-document.addEventListener('DOMContentLoaded', () => {
-    const expenseForm = document.getElementById('expense-form');
-    const expenseList = document.getElementById('expense-list');
-
-    expenseForm.addEventListener('submit', (event) => {
-        event.preventDefault();
-        const expenseInput = document.getElementById('expense-input').value;
-        if (expenseInput.trim() !== '') {
-            addExpense(expenseInput);
-            expenseForm.reset();
+$(document).ready(function(){
+    $('#expense-form').submit(function(){
+        var itemName = $('#Item-name').val().trim();
+        var itemPrice = $('#Item-price').val().trim();
+        itemPrice = Number(itemPrice);
+        if(itemName === '') {
+            $('#Item-name').after('<span class="error">Name Field is required</span');
+            return false;
         }
-    });
 
-    function addExpense(expense) {
-        const li = document.createElement('li');
-        li.textContent = expense;
-        expenseList.appendChild(li);
-    }
+        if(itemPrice === '') {
+            $('#Item-price').after('<span class="error">Price Field is required</span');
+            return false;
+        }
+
+        if (isNaN(itemPrice)) {
+            $('#Item-price').after('<span class="error">The input value must be an valid number</span');
+            return false;
+        } 
+        alert("Transaction added successfully");
+
+        return true;
+    });
 });

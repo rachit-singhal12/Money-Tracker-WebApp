@@ -12,7 +12,19 @@ app.set("view engine", "ejs");
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/', (req, res) => {
-    res.render("index", { message: "hello world" });
+    res.render("index");
+});
+
+app.post('/transaction',(req,res)=>{
+    res.redirect('/');
+});
+
+app.get('/delete',(req,res)=>{
+    res.render("delete");
+});
+
+app.get('/modify',(req,res)=>{
+    res.render("modify");
 });
 
 app.listen(port, () => {

@@ -25,33 +25,55 @@ main {
     margin-top: 0;
 }
 
-#expense-list {
+.transaction-list {
     list-style-type: none;
     padding: 0;
 }
 
-#expense-list li {
+.transaction-list li {
     margin-bottom: 10px;
 }
 
-#expense-form {
+.transaction-form .form-group {
+    margin-bottom: 10px;
+}
+
+.transaction-form .form-group label {
+    display: block;
+}
+
+.transaction-form .form-group input[type="text"] {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.transaction-form .form-buttons {
     display: flex;
-    margin-top: 10px;
+    justify-content: flex-end;
 }
 
-#expense-input {
-    flex: 1;
-    padding: 5px;
-}
-
-#expense-form button {
-    padding: 5px 10px;
-    background-color: #4CAF50;
-    color: white;
+.transaction-form .form-buttons input[type="submit"],
+.transaction-form .form-buttons button {
+    padding: 8px 16px;
+    margin-left: 10px;
     border: none;
+    border-radius: 5px;
     cursor: pointer;
+    background-color: #4CAF50;
+    color: #fff;
 }
 
-#expense-form button:hover {
+.transaction-form .form-buttons input[type="submit"]:hover,
+.transaction-form .form-buttons button:hover {
     background-color: #45a049;
 }
+
+.error{
+    color: red;
+    font-size: 12px;
+}
+ #expenses-text{
+    font-size : 20px;
+ }
