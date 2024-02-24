@@ -4,8 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Money tracker web app</title>
+    <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body>
-    <h1>Welcome to monery tracker web app</h1>
+    <header>
+        <h1>Welcome to Money Tracker Web App</h1>
+    </header>
+    <main>
+        <section id="expenses">
+            <h2>Expenses</h2>
+            <ul id="expense-list"></ul>
+            <form id="expense-form">
+                <input type="text" id="expense-input" placeholder="Enter expense">
+                <button type="submit">Add Expense</button>
+            </form>
+        </section>
+    </main>
+    <script src="/js/script.js"></script>
 </body>
 </html>

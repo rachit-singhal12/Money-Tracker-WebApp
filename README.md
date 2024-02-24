@@ -7,3 +7,4 @@ This project is being conducted as part of an internship program in full stack w
 + mongoose
 + body-parser
 + npm i
++ path
