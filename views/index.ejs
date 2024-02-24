@@ -17,11 +17,11 @@
             <form action="/transaction" name="forms" method="post" id="expense-form" class="transaction-form">
                 <div class="form-group">
                     <label for="Item-name">Item name</label>
-                    <input type="text" id="Item-name" name="Item-name" placeholder="Enter the item name">
+                    <input type="text" id="Item-name" name="name" placeholder="Enter the item name">
                 </div>
                 <div class="form-group">
                     <label for="Item-price">Item price</label>
-                    <input type="text" id="Item-price" placeholder="Enter the item price">
+                    <input type="text" id="Item-price" name="price" placeholder="Enter the item price">
                 </div>
                 <div class="form-buttons">
                     <input type="submit" value="Add transaction" id="submit-btn">
@@ -35,7 +35,6 @@
                 </div>
             
         </section>
-        <%= message %>
     </main>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="/js/script.js"></script>

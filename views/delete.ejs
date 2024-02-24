@@ -3,9 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>delete expenses</title>
+    <title>Delete Expenses</title>
+    <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body>
-    <h1>Delete</h1>
+    <div class="container">
+        <h1>Delete Expenses</h1>
+        <ul id="expense-list">
+            <% transactions.forEach(function(transaction) { %>
+                <li>
+                    <span class="expense-name">Name: <%= transaction.name %></span>
+                    <span class="expense-price">Price: <%= transaction.price %></span>
+                    <span class="expense-date">Date: <%= transaction.date %></span>
+                    <form class="remove-form" onSubmit='alert("Data removed successfully")' action="/remove" method="post">
+                        <input type="hidden" name="transactionId" value="<%= transaction._id %>">
+                        <input type="submit" class="remove-btn" value="Remove"/>
+                    </form>
+                </li>
+            <% }); %>
+        </ul>
+        <a href="/">go back</a>
+    </div>
+
+    <script src="/scripts.js"></script>
 </body>
 </html>

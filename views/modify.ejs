@@ -3,9 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>modify expenses</title>
+    <title>Modify Expenses</title>
+    <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body>
-    <h1>modify</h1>
+    <div class="container">
+        <h1>Modify Expenses</h1>
+        <ul id="expense-list">
+            <% transactions.forEach(function(transaction) { %>
+                <li>
+                    <form class="remove-form" onSubmit='alert("Data updated successfully")' action="/update" method="post">
+                        <span class="expense-name"><input type="text" value="<%= transaction.name %>"/></span>
+                        <span class="expense-price"><input type="text" value="<%= transaction.price %>"/></span>
+                        <span class="expense-date"><input type="text" value="<%= transaction.date %>"/></span>
+                        <input type="hidden" name="transactionId" value="<%= transaction._id %>">
+                        <input type="submit" class="remove-btn" value="Modify"/>
+                    </form>
+                </li>
+            <% }); %>
+        </ul>
+        <a href="/">go back</a>
+    </div>
+
+    <script src="/scripts.js"></script>
 </body>
 </html>
