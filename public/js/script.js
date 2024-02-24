@@ -2,19 +2,21 @@ $(document).ready(function(){
     $('#expense-form').submit(function(){
         var itemName = $('#Item-name').val().trim();
         var itemPrice = $('#Item-price').val().trim();
-        itemPrice = Number(itemPrice);
+        
+        
         if(itemName === '') {
-            $('#Item-name').after('<span class="error">Name Field is required</span');
+            $('#Item-name').after('<span class="error">This Field is required</span><br>');
             return false;
         }
 
         if(itemPrice === '') {
-            $('#Item-price').after('<span class="error">Price Field is required</span');
+            $('#Item-price').after('<span class="error">Price Field is required</span><br>');
             return false;
         }
 
         if (isNaN(itemPrice)) {
-            $('#Item-price').after('<span class="error">The input value must be an valid number</span');
+            itemPrice = Number(itemPrice);
+            $('#Item-price').after('<span class="error">The input value must be an valid number</span><br>');
             return false;
         } 
         alert("Transaction added successfully");
