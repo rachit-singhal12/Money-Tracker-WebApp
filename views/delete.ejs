@@ -5,24 +5,94 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Delete Expenses</title>
     <link rel="stylesheet" href="/css/styles.css">
+    <style>
+        body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f0f0;
+}
+
+.container {
+    max-width: 800px;
+    margin: 50px auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    margin-bottom: 20px;
+    color: #333;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.expense-item {
+    margin-bottom: 20px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background-color: #f9f9f9;
+}
+
+.expense-name, .expense-price, .expense-date {
+    display: block;
+    margin-bottom: 10px;
+}
+
+.remove-btn {
+    background-color: #e74c3c;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+}
+
+.remove-btn:hover {
+    background-color: #c0392b;
+}
+
+.go-back-link {
+    display: inline-block;
+    margin-top: 20px;
+    color: #333;
+    text-decoration: none;
+    border: 1px solid #333;
+    padding: 5px 10px;
+    border-radius: 4px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.go-back-link:hover {
+    background-color: #333;
+    color: #fff;
+}
+    </style>
 </head>
 <body>
     <div class="container">
-        <h1>Delete Expenses</h1>
+        <h1 style="text-align: center;"><i>Delete Expenses</i></h1>
         <ul id="expense-list">
             <% transactions.forEach(function(transaction) { %>
-                <li>
+                <li class="expense-item">
                     <span class="expense-name">Name: <%= transaction.name %></span>
                     <span class="expense-price">Price: <%= transaction.price %></span>
                     <span class="expense-date">Date: <%= transaction.date %></span>
-                    <form class="remove-form" onSubmit='alert("Data removed successfully")' action="/remove" method="post">
+                    <form class="remove-form" action="/remove" method="post">
                         <input type="hidden" name="transactionId" value="<%= transaction._id %>">
                         <input type="submit" class="remove-btn" value="Remove"/>
                     </form>
                 </li>
             <% }); %>
         </ul>
-        <a href="/">go back</a>
+        <a href="/" class="go-back-link">Go Back</a>
     </div>
 
     <script src="/scripts.js"></script>

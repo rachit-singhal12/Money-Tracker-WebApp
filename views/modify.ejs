@@ -5,24 +5,127 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Modify Expenses</title>
     <link rel="stylesheet" href="/css/styles.css">
+    <style>
+        body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f0f0;
+}
+
+.container {
+    max-width: 800px;
+    margin: 50px auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    margin-bottom: 20px;
+    color: #333;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+th, td {
+    padding: 10px;
+    border: 1px solid #ddd;
+}
+
+th {
+    background-color: #f9f9f9;
+    color: #333;
+    font-weight: bold;
+}
+
+tbody tr:hover {
+    background-color: #f0f0f0;
+}
+
+.modify-form {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.modify-btn {
+    background-color: #3498db;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.modify-btn:hover {
+    background-color: #2980b9;
+}
+
+.totals-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid #ddd;
+    padding-top: 10px;
+    margin-top: 20px;
+}
+
+.totals-row span {
+    font-weight: bold;
+}
+
+.go-back-link {
+    display: inline-block;
+    margin-top: 20px;
+    color: #333;
+    text-decoration: none;
+    border: 1px solid #333;
+    padding: 5px 10px;
+    border-radius: 4px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.go-back-link:hover {
+    background-color: #333;
+    color: #fff;
+}
+
+    </style>
 </head>
 <body>
     <div class="container">
-        <h1>Modify Expenses</h1>
-        <ul id="expense-list">
-            <% transactions.forEach(function(transaction) { %>
-                <li>
-                    <form class="remove-form" onSubmit='alert("Data updated successfully")' action="/update" method="post">
-                        <span class="expense-name"><input type="text" name="name" value="<%= transaction.name %>"/></span>
-                        <span class="expense-price"><input type="text" name="price" value="<%= transaction.price %>"/></span>
-                        <span class="expense-date"><input type="text" name="date" value="<%= transaction.date %>"/></span>
-                        <input type="hidden" name="transactionId" value="<%= transaction._id %>">
-                        <input type="submit" class="remove-btn" value="Modify"/>
-                    </form>
-                </li>
-            <% }); %>
-        </ul>
-        <a href="/">go back</a>
+        <h1 style="text-align: center;"><i>Modify Expenses</i></h1>
+        <table id="expense-table">
+            <thead>
+                <tr>
+                    <th  style="background-color: black;color:white;">Name</th>
+                    <th  style="background-color: black;color:white;">Price</th>
+                    <th  style="background-color: black;color:white;">Date</th>
+                    <th  style="background-color: black;color:white;">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% transactions.forEach(function(transaction) { %>
+                    <tr>
+                        <form class="modify-form" onSubmit='alert("Data updated successfully")' action="/update" method="post">
+                            <td><input type="text" name="name" value="<%= transaction.name %>"/></td>
+                            <td><input type="text" name="price" value="<%= transaction.price %>"/></td>
+                            <td><input type="text" name="date" value="<%= transaction.date %>"/></td>
+                            <input type="hidden" name="transactionId" value="<%= transaction._id %>">
+                            <td><input type="submit" class="modify-btn" value="Modify"/></td>
+                        </form>
+                    </tr>
+                <% }); %>
+            </tbody>
+        </table>
+        
+        <a href="/" class="go-back-link">Go Back</a>
     </div>
 
     <script src="/scripts.js"></script>

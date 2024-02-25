@@ -2,16 +2,14 @@ import express from "express";
 import path from "path";
 import { fileURLToPath } from 'url';
 import bodyParser from "body-parser";
-import dotenv from "dotenv";
 import mongoose from "mongoose";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const app = express();
-dotenv.config();
 
-const port = process.env.PORT || 3000;
+const port = 3000;
 
 app.set("view engine", "ejs");
 app.use(express.static(path.join(__dirname, 'public')));
@@ -39,8 +37,6 @@ app.get('/', async (req, res) => {
 app.post('/transaction', async (req, res) => {
     try {
         const { name, price } = req.body;
-        console.log(name);
-        console.log(price);
         const newData = new MoneyData({ name, price });
         await newData.save();
         res.redirect("/");
@@ -93,10 +89,7 @@ app.get('/modify', async(req, res) => {
 app.post("/update",async(req,res)=>{
     try {
         const { name, price, date, transactionId } = req.body;
-        console.log(name);
-        console.log(price);
-        console.log(date);
-        console.log(transactionId);
+
 
         const newData = {};
         if (name) newData.name = name;
