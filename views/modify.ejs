@@ -13,9 +13,9 @@
             <% transactions.forEach(function(transaction) { %>
                 <li>
                     <form class="remove-form" onSubmit='alert("Data updated successfully")' action="/update" method="post">
-                        <span class="expense-name"><input type="text" value="<%= transaction.name %>"/></span>
-                        <span class="expense-price"><input type="text" value="<%= transaction.price %>"/></span>
-                        <span class="expense-date"><input type="text" value="<%= transaction.date %>"/></span>
+                        <span class="expense-name"><input type="text" name="name" value="<%= transaction.name %>"/></span>
+                        <span class="expense-price"><input type="text" name="price" value="<%= transaction.price %>"/></span>
+                        <span class="expense-date"><input type="text" name="date" value="<%= transaction.date %>"/></span>
                         <input type="hidden" name="transactionId" value="<%= transaction._id %>">
                         <input type="submit" class="remove-btn" value="Modify"/>
                     </form>

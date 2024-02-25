@@ -92,8 +92,29 @@ app.get('/modify', async(req, res) => {
 
 app.post("/update",async(req,res)=>{
     try {
-        const transactions = await MoneyData.find();
-        res.render("modify",{ transactions });
+        const { name, price, date, transactionId } = req.body;
+        console.log(name);
+        console.log(price);
+        console.log(date);
+        console.log(transactionId);
+
+        const newData = {};
+        if (name) newData.name = name;
+        if (price) newData.price = price;
+        if (date) newData.date = date;
+
+        const updatedDocument = await MoneyData.findOneAndUpdate(
+            { _id: transactionId },
+            newData,
+            { new: true } 
+        );
+
+        if (updatedDocument) {
+            const transactions = await MoneyData.find();
+            res.render("modify",{ transactions });
+        } else {
+            res.status(404).json({ error: 'Expense not found' });
+        }
     } catch (error) {
         console.error("Error fetching data:", error);
         res.status(500).send("Error fetching data.");
