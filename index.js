@@ -22,7 +22,13 @@ mongoose.connect("mongodb://localhost:27017/moneyTrackerWebApp", {
 const moneytrackerSchema = new mongoose.Schema({
     name: String,
     price: String,
-    date: { type: Date, default: Date.now }
+    date: { 
+        type: Date, 
+        default: Date.now,
+        get: function(value) {
+            return value.toISOString().split('T')[0];
+        }
+    }
 });
 
 const MoneyData = mongoose.model("MoneyData", moneytrackerSchema);
@@ -47,7 +53,7 @@ app.post('/transaction', async (req, res) => {
 
 app.get('/delete', async(req, res) => {
     try {
-        const transactions = await MoneyData.find();
+        const transactions = await MoneyData.find().sort({name:1});
         res.render("delete",{ transactions });
     } catch (error) {
         console.error("Error fetching data:", error);
@@ -65,7 +71,7 @@ app.post("/remove",async(req,res)=>{
         const result = await MoneyData.deleteOne({ _id: transactionId });
 
         if (result.deletedCount === 1) {
-            const transactions = await MoneyData.find();
+            const transactions = await MoneyData.find().sort({name:1});
             res.render("delete",{ transactions });
         } else {
             res.status(404).json({ error: 'Expense not found' });
@@ -78,7 +84,7 @@ app.post("/remove",async(req,res)=>{
 });
 app.get('/modify', async(req, res) => {
     try {
-        const transactions = await MoneyData.find();
+        const transactions = await MoneyData.find().sort({name:1});
         res.render("modify",{ transactions });
     } catch (error) {
         console.error("Error fetching data:", error);
@@ -103,7 +109,7 @@ app.post("/update",async(req,res)=>{
         );
 
         if (updatedDocument) {
-            const transactions = await MoneyData.find();
+            const transactions = await MoneyData.find().sort({name:1});
             res.render("modify",{ transactions });
         } else {
             res.status(404).json({ error: 'Expense not found' });

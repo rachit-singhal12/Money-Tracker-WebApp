@@ -85,7 +85,7 @@ ul {
                     <span class="expense-name">Name: <%= transaction.name %></span>
                     <span class="expense-price">Price: <%= transaction.price %></span>
                     <span class="expense-date">Date: <%= transaction.date %></span>
-                    <form class="remove-form" action="/remove" method="post">
+                    <form class="remove-form" onsubmit="alert('Element is removed')" action="/remove" method="post">
                         <input type="hidden" name="transactionId" value="<%= transaction._id %>">
                         <input type="submit" class="remove-btn" value="Remove"/>
                     </form>
